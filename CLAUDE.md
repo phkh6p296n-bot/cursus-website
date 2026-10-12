@@ -5,6 +5,8 @@ Marketing-Website für **cursus**, eine KI-Planungsschicht für die Disposition 
 ab Februar 2027. Die Seite soll in Sekunden klar machen, was cursus tut, und zu einem **Erstgespräch**
 führen. Vorbild für die Einfachheit: GoStudent. Grundlage für alle Zahlen: das Pitch-Deck (Okt 2026).
 
+Kontext, bisherige Entscheidungen und nächste Schritte stehen in [HANDOVER.md](HANDOVER.md).
+
 ## Befehle
 
 ```bash
