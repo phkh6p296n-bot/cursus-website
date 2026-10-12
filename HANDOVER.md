@@ -1,9 +1,10 @@
 # Übergabe: cursus-Website
 
-Stand: 12. Oktober 2026. Entstanden in einem claude.ai-Chat (Account von Fabian Forster), wird ab jetzt
-mit einem neuen Claude-Account und Claude Code weitergeführt. Dieses Dokument ist für Menschen und für
-Claude gedacht: Es fasst zusammen, was existiert, was entschieden wurde und was als Nächstes zu tun ist.
-Die verbindlichen Arbeitsregeln für den Code stehen in [CLAUDE.md](CLAUDE.md).
+Stand: 12. Oktober 2026. Entstanden in einem claude.ai-Chat. Ab jetzt führt ein neuer Owner das Projekt
+mit **eigenen Konten** weiter (Claude, GitHub, Netlify, Supabase, Resend), komplett getrennt vom bisherigen
+Account. Dieses Dokument ist für Menschen und für Claude gedacht: Es fasst zusammen, was existiert, was
+entschieden wurde und was als Nächstes zu tun ist. Die verbindlichen Arbeitsregeln für den Code stehen in
+[CLAUDE.md](CLAUDE.md).
 
 ---
 
@@ -11,15 +12,16 @@ Die verbindlichen Arbeitsregeln für den Code stehen in [CLAUDE.md](CLAUDE.md).
 
 - **Website v0.1 ist fertig gebaut und getestet**: React + TypeScript, Deutsch und Englisch, mit
   interaktiver Europakarte (4 Szenen), Teilladungen-Check, ROI-Rechner und Terminbuchung.
-- **Code liegt hier im Repo** `phkh6p296n-bot/cursus-website` (privat), Branch `main`.
-- **Noch nicht live**: Kein Hosting, keine Domain, Formular sendet noch nichts, Impressum fehlt.
-- **Nächster Schritt**: Claude Code installieren, Repo klonen, ersten Prompt aus Abschnitt 6 ausführen.
+- **Code liegt in diesem Repo** (privat, Branch `main`) und wird an den neuen Owner übertragen (Abschnitt 5.2).
+- **Noch nicht live**: kein Hosting, keine Domain, das Formular sendet noch nichts, Impressum fehlt.
+- **Nächste Schritte**: eigene Konten anlegen, Repo übernehmen, Claude Code installieren,
+  Prompt A aus Abschnitt 6 ausführen.
 
 ---
 
 ## 1. Was cursus ist (Kontext aus dem Pitch-Deck, Okt 2026)
 
-Das Deck selbst liegt nicht im Repo (vertraulich). Bei Bedarf im neuen Account hochladen oder unter
+Das Deck selbst liegt nicht im Repo (vertraulich). Bei Bedarf im neuen Claude-Account hochladen oder unter
 `docs/` ablegen. Die wichtigsten Punkte:
 
 - **Produkt**: KI-Planungsschicht über dem bestehenden TMS von Frächtern und Speditionen. Liest
@@ -62,11 +64,11 @@ Das Deck selbst liegt nicht im Repo (vertraulich). Bei Bedarf im neuen Account h
    Lademeter und Nutzlast, Flottensimulation ohne/mit Cursus. ROI-Formeln 1:1 aus dem Deck.
 4. **Getestet** in einem Headless-Browser auf Desktop (1440 px) und Handy (390 px): alle Szenen,
    Rechner, Formular-Validierung und Bestätigung, keine Konsolenfehler, kein horizontales Scrollen.
-5. **Livebuild** als private claude.ai-Seite veröffentlicht (im alten Account):
-   https://claude.ai/artifact/D1hszx6ubGq2LDQtiqiCwL. Sichtbar nur für den alten Account, ausser er wird
-   über "Teilen" freigegeben. Ab jetzt ersetzt Netlify diesen Livebuild (Abschnitt 5).
+5. **Vorschau**: Es gab eine private Vorschau-Seite im bisherigen claude.ai-Account. Sie ist für den neuen
+   Owner nicht zugänglich und wird durch das eigene Netlify-Hosting ersetzt (Abschnitt 5.7).
+   Eine lokale Vorschau startet jederzeit mit `npm run dev`.
 6. **Vorbereitet, aber nicht aktiv**: Supabase-Tabelle `leads` + Edge Function `lead` (speichert Anfragen,
-   schickt Mail über Resend), `netlify.toml`.
+   schickt Mail über Resend), `netlify.toml`. Es existieren dafür noch **keine** Konten oder Projekte.
 7. **Nicht gemacht**: `npm install`/Lockfile, Typecheck (in der Build-Umgebung nicht möglich),
    Deployment, Domain, Impressum/Datenschutz, echte Teamnamen und Fotos.
 
@@ -74,7 +76,7 @@ Das Deck selbst liegt nicht im Repo (vertraulich). Bei Bedarf im neuen Account h
 
 ## 3. Entscheidungen
 
-### Aus dem Interview (von Fabian)
+### Aus dem Interview
 
 | Thema | Entscheidung |
 |---|---|
@@ -88,7 +90,7 @@ Das Deck selbst liegt nicht im Repo (vertraulich). Bei Bedarf im neuen Account h
 | Look | Dunkler Hero mit Karte, helle Inhalte darunter, Farben Navy + Orange |
 | Bausteine | ROI-Rechner, Problem in Zahlen, 4 Schritte, Heute vs. mit Cursus, Teilladungen-Check, FAQ, Team |
 | Sprachen | Deutsch und Englisch |
-| Übergabe | GitHub-Repo, Weiterarbeit in Claude Code |
+| Übergabe | Eigenes GitHub-Repo und eigene Konten des neuen Owners, Weiterarbeit in Claude Code |
 
 ### Von Claude getroffen (begründet, änderbar)
 
@@ -126,16 +128,47 @@ und wäre ein eigenes TMS klüger?
 
 ---
 
-## 5. Übernahme mit einem neuen Claude-Account: Schritt für Schritt
+## 5. Übernahme durch den neuen Owner: Schritt für Schritt
 
-### 5.1 Voraussetzungen
+### 5.1 Eigene Konten anlegen
 
-- Claude-Account mit **Pro, Max, Team oder Enterprise** (der kostenlose Plan enthält kein Claude Code).
-- Mac mit macOS 13 oder neuer, Git, **Node.js 20 oder neuer** (`node -v` prüfen; sonst von nodejs.org).
-- Zugriff auf das GitHub-Repo `phkh6p296n-bot/cursus-website`. Arbeiten weitere Personen mit, sie unter
-  GitHub → Settings → Collaborators hinzufügen.
+Alle Konten gehören dem neuen Owner, am besten auf eine **gemeinsame Firmen-Mailadresse** (z. B. team@…),
+damit sie nicht an einer einzelnen Person hängen.
 
-### 5.2 Claude Code installieren und anmelden
+| Konto | Wofür | Hinweis |
+|---|---|---|
+| Claude | Claude Code | Plan Pro, Max, Team oder Enterprise; der kostenlose Plan enthält kein Claude Code |
+| GitHub | Code und Versionen | bekommt das Repo in Schritt 5.2 |
+| Netlify | Hosting der Website | wird mit dem eigenen GitHub verbunden |
+| Supabase | speichert Anfragen aus dem Formular | Projekt in einer EU-Region anlegen |
+| Resend | E-Mail bei neuer Anfrage | braucht eine verifizierte Absender-Domain |
+| Domain-Anbieter | eigene Domain | erst nach der Markenprüfung "cursus" |
+
+### 5.2 Repo übernehmen
+
+**Variante A – Übertragung (empfohlen, der Verlauf bleibt erhalten).**
+Der bisherige Owner öffnet auf GitHub das Repo `cursus-website` → Settings → General → ganz unten
+"Transfer ownership" und gibt den GitHub-Namen des neuen Owners ein. Der neue Owner bestätigt per E-Mail.
+Danach hat der bisherige Owner keinen Zugriff mehr.
+
+**Variante B – Kopie in ein neues Repo.**
+Der neue Owner legt auf GitHub ein leeres, privates Repo `cursus-website` an (ohne README). Der bisherige
+Owner gibt ihm vorübergehend Lesezugriff (Settings → Collaborators). Dann:
+
+```bash
+git clone https://github.com/<BISHERIGER-OWNER>/cursus-website
+cd cursus-website
+git remote set-url origin https://github.com/<DEIN-GITHUB-NAME>/cursus-website
+git push -u origin main
+```
+
+Danach den Zugriff wieder entfernen und das alte Repo löschen.
+
+### 5.3 Voraussetzungen auf dem Rechner
+
+Mac mit macOS 13 oder neuer, Git, **Node.js 20 oder neuer** (`node -v` prüfen, sonst von nodejs.org).
+
+### 5.4 Claude Code installieren und anmelden
 
 ```bash
 curl -fsSL https://claude.ai/install.sh | bash
@@ -143,35 +176,39 @@ curl -fsSL https://claude.ai/install.sh | bash
 claude --version
 ```
 
-Beim ersten Start von `claude` öffnet sich der Browser zum Login: dort mit dem **neuen** Account anmelden.
+Beim ersten Start von `claude` öffnet sich der Browser: mit dem **eigenen** Claude-Account anmelden.
 Alternativ: `brew install --cask claude-code`. Doku: https://code.claude.com/docs/en/setup
 
-### 5.3 Repo holen und Claude Code starten
+### 5.5 Repo holen und Claude Code starten
+
+Bei Variante B ist das Repo schon lokal vorhanden; dann nur `cd cursus-website` und `claude`.
 
 ```bash
-git clone https://github.com/phkh6p296n-bot/cursus-website
+git clone https://github.com/<DEIN-GITHUB-NAME>/cursus-website
 cd cursus-website
 claude
 ```
 
 Claude Code liest `CLAUDE.md` automatisch. Diese Datei (`HANDOVER.md`) im ersten Prompt erwähnen.
 
-### 5.4 Erster Prompt (einfügen)
+### 5.6 Erster Prompt (einfügen)
 
 Siehe Abschnitt 6, Prompt A.
 
-### 5.5 Live gehen mit Netlify (ohne Code, ca. 5 Minuten)
+### 5.7 Live gehen mit dem eigenen Netlify (ohne Code, ca. 5 Minuten)
 
-1. netlify.com → Add new site → Import an existing project → GitHub → `cursus-website` wählen.
+1. Im eigenen Netlify-Konto: Add new site → Import an existing project → GitHub → das eigene GitHub-Konto
+   verbinden → `cursus-website` wählen.
 2. Build-Einstellungen werden aus `netlify.toml` übernommen (Build `npm run build`, Ordner `dist`).
 3. Deploy. Ab dann geht jeder Push auf `main` automatisch live.
 4. Eigene Domain unter Site configuration → Domain management verbinden, sobald gesichert.
 
-### 5.6 Buchungsformular scharf schalten
+### 5.8 Buchungsformular mit eigenem Supabase und Resend scharf schalten
 
-Ablauf steht in `CLAUDE.md` unter "Buchungsformular". Kurz: Supabase-Projekt (EU-Region wählen),
-Migration anwenden, Edge Function `lead` deployen, Resend-Domain verifizieren, Secrets setzen,
-`LEAD_ENDPOINT` in Netlify eintragen. Claude Code kann das mit Prompt C übernehmen.
+Ablauf steht in `CLAUDE.md` unter "Buchungsformular". Kurz: im eigenen Supabase-Konto ein Projekt in der
+EU anlegen, Migration anwenden, Edge Function `lead` deployen, im eigenen Resend-Konto die Absender-Domain
+verifizieren, Secrets setzen, `LEAD_ENDPOINT` im eigenen Netlify eintragen. Claude Code kann das mit
+Prompt C übernehmen.
 
 ---
 
@@ -180,7 +217,7 @@ Migration anwenden, Edge Function `lead` deployen, Resend-Domain verifizieren, S
 **Prompt A – Einrichten und prüfen (zuerst)**
 ```
 Lies CLAUDE.md und HANDOVER.md. Dann: npm install, npm run typecheck und alle Typfehler beheben,
-ohne Verhalten oder Texte zu ändern. package-lock.json committen. Danach npm run build und
+ohne Verhalten oder Texte zu ändern. package-lock.json committen und pushen. Danach npm run build und
 npm run dev starten und mir die lokale URL geben. Fasse am Ende zusammen, was du geändert hast.
 ```
 
@@ -193,9 +230,10 @@ src/components/Team.tsx durch echte Bilder mit Alt-Text. Halte dich an die Inhal
 
 **Prompt C – Buchungsformular live schalten**
 ```
-Schalte das Buchungsformular produktiv nach der Anleitung in CLAUDE.md (Abschnitt Buchungsformular).
-Nutze die Supabase CLI. Frag mich nach Projekt, Region (EU), Absender-Domain und Empfänger-Adresse,
-bevor du etwas anlegst. Teste am Ende eine echte Anfrage und zeig mir den Eintrag in der Tabelle leads.
+Schalte das Buchungsformular produktiv nach der Anleitung in CLAUDE.md (Abschnitt Buchungsformular),
+in unserem eigenen Supabase- und Resend-Konto. Nutze die Supabase CLI und führe mich durch Login und
+Projektauswahl. Frag mich nach Region (EU), Absender-Domain und Empfänger-Adresse, bevor du etwas anlegst.
+Teste am Ende eine echte Anfrage und zeig mir den Eintrag in der Tabelle leads.
 ```
 
 **Prompt D – Vor dem Launch**
@@ -215,7 +253,7 @@ Teamnamen und Fotos · Buchungs-Backend · Lockfile und Typecheck · OG-Bild · 
 cookieloses Analytics · Accessibility-Check · schriftliche Freigabe, den Design-Partner zu nennen.
 
 **Fragen ans Team**:
-- Wer ist der zweite Co-Founder, und dürfen beide Namen und Fotos auf die Seite?
+- Wer sind die beiden Co-Founder, und dürfen Namen und Fotos auf die Seite?
 - Unter welcher Firma und Adresse läuft das Impressum?
 - Welche E-Mail-Adresse bekommt die Anfragen aus dem Formular?
 - Soll das Formular Wunschtermine sammeln (jetzt) oder direkt in einen Kalender buchen (z. B. Cal.com)?
